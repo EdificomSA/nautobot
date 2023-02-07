@@ -45,7 +45,7 @@ django-auth-ldap = {version = "~4.1.0", optional = true}
 # Caching with Redis
 django-cacheops = "~6.0"
 # Base functionality for task scheduling with Celery
-django-celery-beat = "~2.2.1"
+django-celery-beat = "~2.4.0"
 # Provides a database backend & models for Celery task results
 django-celery-results = "~2.4.0"
 # Management of app configuration via the Django admin UI
@@ -61,26 +61,26 @@ django-extensions = "~3.2.0"
 # Advanced query filters
 django-filter = "~21.1"
 # Health check endpoint
-django-health-check = "~3.16.5"
+django-health-check = "~3.17.0"
 # Django Jinja - jinja2 backend for django, used to easily register custom jinja filters and render jinja.
 django-jinja = "~2.10.2"
 # Prometheus metrics for Django
 django-prometheus = "~2.2.0"
 # Custom prometheus metrics
-prometheus-client = "~0.15.0"
+prometheus-client = "~0.16.0"
 # Redis cache for Django used for distributed locking
 django-redis = "~5.2.0"
 # External Storage support (i.e. S3)
 django-storages = {version = "~1.13.0", optional = true}
 # Advanced HTML tables
-django-tables2 = "~2.4.1"
+django-tables2 = "~2.5.0"
 # Tags
 django-taggit = "~3.1.0"
 # Represent time zones in Django
 # NOTE: django-timezone-field 4.2.x is available but appears to break our initial migrations?
-django-timezone-field = "~4.1.2"
+django-timezone-field = "~4.2.0"
 # Tree database structures based on Common Table Expressions
-django-tree-queries = "~0.13.0"
+django-tree-queries = "~0.14.0"
 # Run production webservers such as uWSGI/gunicorn as a Django management command.
 django-webserver = "~1.2.0"
 # REST API framework
@@ -95,7 +95,7 @@ GitPython = "~3.1.30"
 graphene-django = "~2.15.0"
 # Graphene Optimizer
 # NOTE: graphene-django-optimizer 0.9 and later require Graphene v3
-graphene-django-optimizer = "~0.8.0"
+graphene-django-optimizer = "~0.9.0"
 # Package version detection in older versions of Python
 # NOTE: We want to permit newer versions of importlib-metadata to be installed while not forcing
 #       plugins to move their dependencies ahead. Currently this is a direct dependency until
@@ -106,7 +106,7 @@ Jinja2 = "~3.1.0"
 # Optional data validation of config contexts
 jsonschema = "~4.17.0"
 # Rendering of markdown files to HTML
-Markdown = "~3.3.7"
+Markdown = "~3.4.0"
 # Escape text to use HTML and XML
 MarkupSafe = "~2.1.1"
 # MySQL database adapter
@@ -118,7 +118,7 @@ netaddr = "~0.8.0"
 # Library of network related Jinja Filters
 netutils = "~1.4.0"
 # Image processing library
-Pillow = "~9.3.0"
+Pillow = "~9.4.0"
 # PostgreSQL database adapter
 # NOTE: psycopg3 is avaiable now and nominally replaces psycopg2
 psycopg2-binary = "~2.9.5"
@@ -178,10 +178,10 @@ mkdocs-material = "~8.5.8"
 # Render custom markdown for version added/changed/remove notes
 mkdocs-version-annotations = "~1.0.0"
 # Automatic documentation from sources, for MkDocs
-mkdocstrings = "0.19.1"
-mkdocstrings-python = "0.8.2"
+mkdocstrings = "0.20.0"
+mkdocstrings-python = "0.8.3"
 # Code static analysis
-pylint = {version = "~2.15.0", python = "^3.7.2"}
+pylint = {version = "~2.16.0", python = "^3.7.2"}
 # Pylint extensions for Django
 pylint-django = {version = "~2.5.3", python = "^3.7.2"}
 # Integration Tests
@@ -189,11 +189,11 @@ requests = "~2.28.0"
 # Colorization and autoformatting of CLI output, used for Invoke tasks
 rich = "~12.6.0"
 # Selenium web drivers for live integration testing
-selenium = "~4.7.0"
+selenium = "~4.8.0"
 # Abstraction layer for working with Selenium
-splinter = "~0.18.0"
+splinter = "~0.19.0"
 # Change log management and generation
-towncrier = "~22.8.0"
+towncrier = "~22.12.0"
 # Watch files for celery and mkdocs reload
 watchdog = "~2.2.0"
 
