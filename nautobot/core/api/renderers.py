@@ -1,10 +1,11 @@
 import csv
 from io import StringIO
-import json
+import orjson
 import logging
 
 from django.conf import settings
-from rest_framework.renderers import BaseRenderer, BrowsableAPIRenderer, JSONRenderer
+from rest_framework.renderers import BaseRenderer, BrowsableAPIRenderer
+from drf_orjson_renderer.renderers import ORJSONRenderer
 
 from nautobot.core.celery import NautobotKombuJSONEncoder
 from nautobot.core.constants import COMPOSITE_KEY_SEPARATOR
@@ -27,9 +28,9 @@ class FormlessBrowsableAPIRenderer(BrowsableAPIRenderer):
         return None
 
 
-class NautobotJSONRenderer(JSONRenderer):
+class NautobotJSONRenderer(ORJSONRenderer):
     """
-    Override the encoder_class of the default JSONRenderer to handle the rendering of TagsManager in Nautobot API.
+    Override the encoder_class of the default ORJSONRenderer to handle the rendering of TagsManager in Nautobot API.
     """
 
     encoder_class = NautobotKombuJSONEncoder
@@ -142,7 +143,7 @@ class NautobotCSVRenderer(BaseRenderer):
                 elif "id" in value:
                     value = str(value["id"])
                 else:
-                    value = json.dumps(value)
+                    value = orjson.dumps(value)
             elif isinstance(value, (list, tuple, set)):
                 if isinstance(value, set):
                     value = sorted(value)

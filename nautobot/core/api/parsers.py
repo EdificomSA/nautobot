@@ -1,6 +1,6 @@
 import csv
 from io import StringIO
-import json
+import orjson
 import logging
 
 from django.conf import settings
@@ -51,7 +51,7 @@ class NautobotCSVParser(BaseParser):
             # and the response will always be a list of created objects, never a single object
 
             if settings.DEBUG:
-                logger.debug("CSV loaded into data:\n%s", json.dumps(data, indent=2))
+                logger.debug("CSV loaded into data:\n%s", orjson.dumps(data, indent=2))
             return data
         except ParseError:
             raise
@@ -198,7 +198,7 @@ class NautobotCSVParser(BaseParser):
                     pass
                 elif value is not None:
                     if value.startswith(("{", "[")):
-                        value = json.loads(value)
+                        value = orjson.loads(value)
                     else:
                         value = value.split(",")
                         try:

@@ -1,13 +1,14 @@
 import logging
 
-from rest_framework.utils.encoders import JSONEncoder
+# from rest_framework.utils.encoders import JSONEncoder
+from drf_orjson_renderer.renderers import ORJSONRenderer
 
 logger = logging.getLogger(__name__)
 
 
-class NautobotKombuJSONEncoder(JSONEncoder):
+class NautobotKombuJSONEncoder(ORJSONRenderer):
     """
-    Custom json encoder based on restframework's JSONEncoder that serializes objects that implement
+    Custom json encoder based on restframework's ORJSONRenderer that serializes objects that implement
     the `nautobot_serialize()` method via the `__nautobot_type__` interface. This is useful
     in passing special objects to and from Celery tasks.
 
