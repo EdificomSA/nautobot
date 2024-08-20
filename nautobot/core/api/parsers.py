@@ -1,6 +1,6 @@
 import csv
 from io import StringIO
-import json
+import orjson
 import logging
 
 from django.conf import settings
@@ -198,7 +198,7 @@ class NautobotCSVParser(BaseParser):
                     pass
                 elif value is not None:
                     if value.startswith(("{", "[")):
-                        value = json.loads(value)
+                        value = orjson.loads(value)
                     else:
                         value = value.split(",")
                         try:
