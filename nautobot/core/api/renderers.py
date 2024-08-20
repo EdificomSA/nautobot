@@ -1,6 +1,6 @@
 import csv
 from io import StringIO
-import json
+import orjson
 import logging
 
 from django.conf import settings
@@ -142,7 +142,7 @@ class NautobotCSVRenderer(BaseRenderer):
                 elif "id" in value:
                     value = str(value["id"])
                 else:
-                    value = json.dumps(value)
+                    value = orjson.dumps(value)
             elif isinstance(value, (list, tuple, set)):
                 if isinstance(value, set):
                     value = sorted(value)
