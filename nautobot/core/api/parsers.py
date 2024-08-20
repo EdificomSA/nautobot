@@ -51,7 +51,7 @@ class NautobotCSVParser(BaseParser):
             # and the response will always be a list of created objects, never a single object
 
             if settings.DEBUG:
-                logger.debug("CSV loaded into data:\n%s", json.dumps(data, indent=2))
+                logger.debug("CSV loaded into data:\n%s", orjson.dumps(data, indent=2))
             return data
         except ParseError:
             raise
