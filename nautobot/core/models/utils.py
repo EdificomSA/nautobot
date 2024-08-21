@@ -1,5 +1,5 @@
 from itertools import count, groupby
-import json
+import orjson
 import unicodedata
 from urllib.parse import quote_plus, unquote_plus
 
@@ -104,7 +104,7 @@ def serialize_object(obj, extra=None, exclude=None):
     implicitly excluded.
     """
     json_str = serialize("json", [obj])
-    data = json.loads(json_str)[0]["fields"]
+    data = orjson.loads(json_str)[0]["fields"]
 
     # Include custom_field_data as "custom_fields"
     if hasattr(obj, "_custom_field_data"):
