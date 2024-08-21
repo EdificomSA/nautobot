@@ -11,7 +11,8 @@ from graphql import GraphQLError
 from rest_framework import mixins, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.exceptions import MethodNotAllowed, PermissionDenied, ValidationError
-from rest_framework.parsers import JSONParser, MultiPartParser
+from rest_framework.parsers import MultiPartParser
+from drf_orjson_renderer.parsers import ORJSONParser
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
@@ -564,7 +565,7 @@ class JobViewSetBase(
         detail=True,
         methods=["post"],
         permission_classes=[JobRunTokenPermissions],
-        parser_classes=[JSONParser, MultiPartParser],
+        parser_classes=[ORJSONParser, MultiPartParser],
     )
     def run(self, request, *args, **kwargs):
         """Run the specified Job."""
