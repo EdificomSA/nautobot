@@ -104,6 +104,8 @@ graphene-django-optimizer = "~0.8.0"
 Jinja2 = "~3.1.4"
 # Optional data validation of config contexts - loose dependency since our usage is light but apps may be more specific
 jsonschema = "^4.7.0"
+# Fast and well tested serialization library
+mashumaro = {version = "^3.13.1", extras = ["orjson"]}
 # Rendering of markdown files to HTML
 Markdown = "~3.6"
 # Escape text to use HTML and XML
