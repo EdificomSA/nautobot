@@ -296,14 +296,12 @@ REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "nautobot.core.api.pagination.OptionalLimitOffsetPagination",
     "DEFAULT_PERMISSION_CLASSES": ("nautobot.core.api.authentication.TokenPermissions",),
     "DEFAULT_RENDERER_CLASSES": (
-        # "drf_orjson_renderer.renderers.ORJSONRenderer",
         "nautobot.core.api.renderers.NautobotJSONRenderer",
         "nautobot.core.api.renderers.FormlessBrowsableAPIRenderer",
         "nautobot.core.api.renderers.NautobotCSVRenderer",
     ),
     "DEFAULT_PARSER_CLASSES": (
         "drf_orjson_renderer.parsers.ORJSONParser",
-        # "rest_framework.parsers.JSONParser",
         "nautobot.core.api.parsers.NautobotCSVParser",
     ),
     "DEFAULT_SCHEMA_CLASS": "nautobot.core.api.schema.NautobotAutoSchema",
