@@ -1,4 +1,4 @@
-import json
+import orjson
 import re
 
 from django.core import exceptions
@@ -331,9 +331,9 @@ class JSONArrayField(models.JSONField):
         if isinstance(value, str):
             try:
                 # Assume we're deserializing
-                vals = json.loads(value)
+                vals = orjson.loads(value)
                 value = [self.base_field.to_python(val) for val in vals]
-            except (TypeError, json.JSONDecodeError) as e:
+            except (TypeError, orjson.JSONDecodeError) as e:
                 raise exceptions.ValidationError(e)
         return value
 
@@ -352,7 +352,7 @@ class JSONArrayField(models.JSONField):
             else:
                 obj = AttributeSetter(base_field.attname, val)
                 values.append(base_field.value_to_string(obj))
-        return json.dumps(values, ensure_ascii=False)
+        return orjson.dumps(values, ensure_ascii=False)
 
     def validate(self, value, model_instance):
         """
