@@ -1,4 +1,4 @@
-import json
+import orjson
 import logging
 import os
 from pathlib import Path
@@ -192,12 +192,12 @@ def nautobot_kombu_json_loads_hook(data):
 
 # Encoder function
 def _dumps(obj):
-    return json.dumps(obj, cls=NautobotKombuJSONEncoder, ensure_ascii=False)
+    return orjson.dumps(obj, cls=NautobotKombuJSONEncoder, ensure_ascii=False)
 
 
 # Decoder function
 def _loads(obj):
-    return json.loads(obj, object_hook=nautobot_kombu_json_loads_hook)
+    return orjson.loads(obj, object_hook=nautobot_kombu_json_loads_hook)
 
 
 # Register the custom serialization type
