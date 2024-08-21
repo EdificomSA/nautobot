@@ -19,7 +19,8 @@ from graphql.error import GraphQLSyntaxError
 from graphql.language.ast import OperationDefinition
 from jsonschema.exceptions import SchemaError, ValidationError as JSONSchemaValidationError
 from jsonschema.validators import Draft7Validator
-from rest_framework.utils.encoders import JSONEncoder
+# from rest_framework.utils.encoders import JSONEncoder
+from mashumaro.codecs.orjson import ORJSONEncoder
 
 from nautobot.core.constants import CHARFIELD_MAX_LENGTH
 from nautobot.core.models import BaseManager, BaseModel
@@ -1026,7 +1027,7 @@ class Webhook(
         if self.body_template:
             return render_jinja2(self.body_template, context)
         else:
-            return orjson.dumps(context, cls=JSONEncoder, ensure_ascii=False)
+            return orjson.dumps(context, cls=ORJSONEncoder, ensure_ascii=False)
 
     @classmethod
     def check_for_conflicts(
