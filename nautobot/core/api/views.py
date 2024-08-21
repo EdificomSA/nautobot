@@ -15,7 +15,9 @@ from django.http.response import HttpResponseBadRequest
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import NoReverseMatch, reverse as django_reverse
 from drf_spectacular.plumbing import get_relative_url, set_query_parameters
-from drf_spectacular.renderers import OpenApiJsonRenderer
+# from drf_spectacular.renderers import OpenApiJsonRenderer
+from drf_orjson_renderer.renderers import ORJSONRenderer
+
 from drf_spectacular.utils import extend_schema
 from drf_spectacular.views import SpectacularRedocView, SpectacularSwaggerView
 from graphene_django.settings import graphene_settings
@@ -57,6 +59,12 @@ HTTP_ACTIONS = {
     "PATCH": "change",
     "DELETE": "delete",
 }
+
+class OpenApiJsonRenderer(ORJSONRenderer):
+    media_type = 'application/vnd.oai.openapi+json'
+
+    def get_indent(self, accepted_media_type, renderer_context):
+        return super().get_indent(accepted_media_type, renderer_context) or 4
 
 #
 # Mixins
