@@ -1,12 +1,12 @@
 import logging
 
-# from rest_framework.utils.encoders import JSONEncoder
-from drf_orjson_renderer.renderers import ORJSONRenderer
+from rest_framework.utils.encoders import JSONEncoder
+# from drf_orjson_renderer.encoders import ORJSONEncoder
 
 logger = logging.getLogger(__name__)
 
 
-class NautobotKombuJSONEncoder(ORJSONRenderer):
+class NautobotKombuJSONEncoder(JSONEncoder):
     """
     Custom json encoder based on restframework's ORJSONRenderer that serializes objects that implement
     the `nautobot_serialize()` method via the `__nautobot_type__` interface. This is useful
