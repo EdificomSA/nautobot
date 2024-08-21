@@ -1,5 +1,5 @@
 from collections import OrderedDict
-import json
+import orjson
 
 from db_file_storage.model_utils import delete_file, delete_file_if_needed
 from db_file_storage.storage import DatabaseFileStorage
@@ -524,12 +524,12 @@ class ExternalIntegration(PrimaryModel):
         Raises:
             TemplateAssertionError: Raised when an invalid template helper function exists in headers.
             TemplateSyntaxError: Raised when an invalid template variable exists in headers.
-            json.decoder.JSONDecodeError: Raised when invalid JSON data exists in context.
+            orjson.decoder.JSONDecodeError: Raised when invalid JSON data exists in context.
         """
         if not self.headers:
             return {}
 
-        data = json.loads(render_jinja2(json.dumps(self.headers, ensure_ascii=False), context))
+        data = orjson.loads(render_jinja2(orjson.dumps(self.headers, ensure_ascii=False), context))
         return data
 
     def render_extra_config(self, context):
@@ -539,12 +539,12 @@ class ExternalIntegration(PrimaryModel):
         Raises:
             TemplateAssertionError: Raised when an invalid template helper function exists in extra_config.
             TemplateSyntaxError: Raised when an invalid template variable exists in extra_config.
-            json.decoder.JSONDecodeError: Raised when invalid JSON data exists in context.
+            orjson.decoder.JSONDecodeError: Raised when invalid JSON data exists in context.
         """
         if not self.extra_config:
             return {}
 
-        data = json.loads(render_jinja2(json.dumps(self.extra_config, ensure_ascii=False), context))
+        data = orjson.loads(render_jinja2(orjson.dumps(self.extra_config, ensure_ascii=False), context))
         return data
 
     def render_remote_url(self, context):
@@ -1026,7 +1026,7 @@ class Webhook(
         if self.body_template:
             return render_jinja2(self.body_template, context)
         else:
-            return json.dumps(context, cls=JSONEncoder, ensure_ascii=False)
+            return orjson.dumps(context, cls=JSONEncoder, ensure_ascii=False)
 
     @classmethod
     def check_for_conflicts(
